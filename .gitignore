@@ -9,3 +9,11 @@ wheels/
 # Virtual environments
 .venv
 .env
+__pycache__/
+*.py[cod]
+*$py.class
+
+.chroma/*
+.chroma
+# C extensions
+*.so
