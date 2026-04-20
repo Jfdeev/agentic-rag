@@ -3,8 +3,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-from graph.chains.retrieval_grader import GradeDocuments, retrieval_grader
-from ingestion import retriever
+from src.graph.chains.retrieval_grader import GradeDocuments, retrieval_grader
+from src.ingestion import retriever
 
 
 def test_retrieval_grader_answer_yes() -> None:
