@@ -3,7 +3,10 @@ from dotenv import load_dotenv
 from langgraph.graph import END, StateGraph
 
 from graph.consts import RETRIEVE, GRADE_DOCUMENTS, GENERATE, WEBSEARCH
-from graph.nodes import generate, grade_documents, retrieve, web_search
+from graph.nodes.generate import generate
+from graph.nodes.grade_documents import grade_documents
+from graph.nodes.retrieve import retrieve
+from graph.nodes.web_search import web_search
 from graph.state import GraphState
 
 load_dotenv()

@@ -1,6 +1,6 @@
 from typing import Any, Dict
 
-from langchain import Document
+from langchain_core.documents import Document
 from langchain_tavily import TavilySearch
 
 from graph.state import GraphState
