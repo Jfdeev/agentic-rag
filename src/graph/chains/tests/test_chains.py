@@ -39,7 +39,7 @@ def test_generation_chain() -> None:
     question = "agent memory"
     docs = retriever.invoke(question)
     generation = generation_chain.invoke({"context": docs, "question": question})
-    pprint(generation)
+    print(generation)
 
 
 def test_hallucination_grader_answer_yes() -> None:
@@ -78,3 +78,26 @@ def test_router_to_websearch() -> None:
 
     res: RouteQuery = question_router.invoke({"question": question})
     assert res.datasource == "websearch"
+
+def test_hallucination_grader_answer_yes() -> None:
+    question = "agent memory"
+    docs = retriever.invoke(question)
+
+    generation = generation_chain.invoke({"context": docs, "question": question})
+    res: GradeHallucinations = hallucination_grader.invoke(
+        {"documents": docs, "generation": generation}
+    )
+    assert res.binary_score
+
+
+def test_hallucination_grader_answer_no() -> None:
+    question = "agent memory"
+    docs = retriever.invoke(question)
+
+    res: GradeHallucinations = hallucination_grader.invoke(
+        {
+            "documents": docs,
+            "generation": "In order to make pizza we need to first start with the dough",
+        }
+    )
+    assert not res.binary_score
